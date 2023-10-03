@@ -8,9 +8,6 @@ config = configparser.ConfigParser()
 config.read('creds.cfg')
 openai.api_key = config['creds']['api_key']
 
-config.read('auth.cfg')
-authorized_api_keys = set(config['api_keys'].values())
-
 # Sample data to simulate a database of birthday messages
 birthday_messages = []
 
@@ -26,49 +23,29 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
 
 @app.route('/birthday-messages', methods=['POST'])
 def create_birthday_message():
-    # Verify the API key in the request headers
-    api_key = request.headers.get('Authorization')
-
-    if api_key not in authorized_api_keys:
-        return jsonify({"error": "Unauthorized"}), 401  # 401 Unauthorized
-
-    data = request.get_json()
-    
-    friend_name = data.get('friend_name', 'John')
-    relationship_type = data.get('relationship_type', 'Work Colleague')
-    words = data.get('words', [])
-    max_words = data.get('max_words', 100)
-    style = data.get('style', 'poem')
-    language = data.get('language', 'english')
+    # Retrieve query parameters from the URL
+    friend_name = request.args.get('friend_name', 'Friend')
+    relationship_type = request.args.get('relationship_type', 'relationship')
+    words = request.args.getlist('words')  # Use getlist to retrieve multiple values
+    max_words = request.args.get('max_words', 100)
+    style = request.args.get('style', 'poem')
+    language = request.args.get('language', 'en')
 
     prompt = f"Today is the birthday of my friend {friend_name}, which is my {relationship_type}. Generate a happy birthday message with the words from the following list: {words} and maximum {max_words} characters. Write the text like a {style} and in the {language} language."
 
     # Call get_completion to generate the message
     generated_message = get_completion(prompt)
-
-    # Check if the message generation was successful
-    if generated_message:
-        # Message generation successful
-        birthday_messages.append(generated_message)
-        return jsonify({"message": generated_message}), 201  # 201 Created
-    else:
-        # Handle the case where message generation failed
-        return jsonify({"error": "Message generation failed"}), 500  # 500 Internal Server Error
+    
+    # Add the generated message to the list of birthday messages (simulating storage)
+    birthday_messages.append(generated_message)
+    
+    # Return the generated message as the API response
+    return jsonify({"message": generated_message.strip()}), 201  # Use 201 Created status code
 
 @app.route('/birthday-messages', methods=['GET'])
 def get_birthday_messages():
-    # Verify the API key in the request headers
-    api_key = request.headers.get('Authorization')
-
-    if api_key not in authorized_api_keys:
-        return jsonify({"error": "Unauthorized"}), 401  # 401 Unauthorized
-
     # Return a list of all birthday messages (simulated database)
     return jsonify({"messages": birthday_messages})
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
