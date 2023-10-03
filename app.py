@@ -1,8 +1,19 @@
+"""
+app.py
+
+This module contains a Flask application for generating birthday messages using OpenAI's GPT-3 model.
+"""
+
 from flask import Flask, request, jsonify
+from flask_limiter import Limiter
 import configparser
 import openai
+import time
+from functools import wraps
+from functions import *
 
 app = Flask(__name__)
+limiter = Limiter(app)
 
 config = configparser.ConfigParser()
 config.read('creds.cfg')
@@ -14,18 +25,33 @@ authorized_api_keys = set(config['api_keys'].values())
 # Sample data to simulate a database of birthday messages
 birthday_messages = []
 
-# Define your get_completion function here
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=0.9,
-    )
-    return response.choices[0].message["content"]
+# Defining custom error message for rate limit
+@limiter.request_filter
+def custom_response(limiter, error):
+    """
+    Custom response handler for rate limiting errors.
+
+    Args:
+        error: The rate limiting error.
+
+    Returns:
+        flask.Response: A JSON response with a rate limit exceeded message and status code 429.
+    """
+    response = jsonify({
+        "error": "Rate limit exceeded. Please try again later.",
+    })
+    return response, 429
 
 @app.route('/birthday-messages', methods=['POST'])
+@limiter.limit("2 per minute")
+@throttle(3)  # Throttle to x request per second
 def create_birthday_message():
+    """
+    Create a birthday message based on user input.
+
+    Returns:
+        flask.Response: A JSON response with the generated birthday message or an error message.
+    """
     # Verify the API key in the request headers
     api_key = request.headers.get('Authorization')
 
@@ -56,7 +82,14 @@ def create_birthday_message():
         return jsonify({"error": "Message generation failed"}), 500  # 500 Internal Server Error
 
 @app.route('/birthday-messages', methods=['GET'])
+@throttle(5)  # Throttle to 5 request per second
 def get_birthday_messages():
+    """
+    Get a list of all birthday messages.
+
+    Returns:
+        flask.Response: A JSON response with a list of birthday messages.
+    """
     # Verify the API key in the request headers
     api_key = request.headers.get('Authorization')
 

@@ -88,9 +88,27 @@ http://localhost:5000/birthday-messages?friend_name=Joseph&relationship_type=hus
 
 Query string implementations are useful for use cases when there is a need for simple and transparent information. They can also be easily cached by intermediaries like proxy servers, which can improve performance and reduce server load for frequently accessed resources. In addition to this, query string URLs can be bookmarked by end users, which is helpful for saving specific views, filters, and search results. However, for more complex data structures, larger volumes of data, and sensitive information, JSON body is the go-to option.
 
-## Authentication
+## Authentication and Authorization
 
 Basic API_key authorization was added to the project, making it necessary to add the key 'Authorization' and one of the API Keys inside the auth.cfg file as a value for successfully completing requests. API Key authentication is less secure for user-specific authentication because they are typically long-lived and can be easily shared, but are suitable for simple, low-security scenarios and public APIs that don't require user-specific access. Therefore, they are a great option for providing access to the entire API when there is no need for fine-grained permissions.
+
+## Rate Limit and Throttling
+
+This project uses flask rate limite library. To install, execute the command below:
+
+```
+pip install Flask-Limiter
+```
+
+Using Flask-Limiter is as easy as adding the @limiter.limit decorator with the limiting expression as a string on top of each endpoint, example: @limiter.limit("10 per minute"). The greatest advantage of rate limiting calls for this project is that as credits for my ChatGPT API Key are limited, I would like to avoid a single user to drain all of the credits by making multiple calls in a short time window. The result of multiple calls after the rate limit implementation can be seen below:
+
+![RateLimit](images/rateLimit.png)
+
+Throttling is a mechanism that limits the rate at which requests are processed or served by an API. While rate limiting restricts the number of requests a client can make within a specific time window, throttling controls how frequently the server processes or serves those requests. Throttling ensures that even if a client has a high rate limit, they cannot overwhelm the server with rapid, consecutive requests.
+
+To avoid receiving these consecutive calls or sending the rate limit error message, a basic throttling mechanism was implemented. The result is that the API takes longer to answer, which can be observed in Postman by the increased time "Sending request..." is kept on the screen.
+
+![throttlingExample](images/throttlingExample.png)
 
 ## Next steps
 
@@ -98,6 +116,5 @@ The goal of this project was simply to try out ChatGPT API, but I decided to lis
 
 1. Improve validation and error handling 
 2. Data persistence
-3. Advanced user authentication and authorization
-4. Rate limit and throttling
-5. API documentation
+3. Advanced user authentication and authorization with JWT
+4. API documentation
