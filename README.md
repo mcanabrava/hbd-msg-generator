@@ -5,7 +5,7 @@ The goal of this project is to develop an API that can run on localhost, so I ca
 
 To start, you'll need a way to run a local server that listens for incoming HTTP requests. You can use a web framework like Flask or FastAPI for this purpose. We'll use Flask in this example.
 
-After configuring Flask, you'll need to create an endpoint that accepts POST requests and sends them to the OpenAPI model to get a response. An alternative implementation that uses query string instead of a JSON body can be found in the app_qs.py file.
+After configuring Flask, you'll need to create an endpoint that accepts POST requests and sends them to the OpenAPI model to get a response. An alternative implementation that uses a query string instead of a JSON body can be found in the app_qs.py file.
 
 ## Running the app step by step
 
@@ -78,19 +78,19 @@ The list of results can also be retrieved directly from the browser, which opera
 
 The app_qs.py file follows the same implementation, but with a slightly modified code that allows the users to use query string parameters instead of sending a JSON body.
 
-A test can be made sending a POST request to the endpoint as follows:
+A test can be made by sending a POST request to the endpoint as follows:
 
 ```
 http://localhost:5000/birthday-messages?friend_name=Joseph&relationship_type=husband&words=birthday&words=engineer&cake=water&max_words=75&style=greeting&language=fr
 ```
 
-![joseph](images/JosephRequest.png.png)
+![joseph](images/JosephRequest.png)
 
-Query string implementations are useful for use cases when there is the need for simple and transparent information. They can also be easily cached by intermediaries like proxy servers, which can improve performance and reduce server load for frequently accessed resources. In addition to this, query string URLs can be bookmarked by end users, which is helpful for saving specific views, filters and search resuts. However, for more complex data structures, larger volumes of data and sensitive information, JSON body is the go to option.
+Query string implementations are useful for use cases when there is a need for simple and transparent information. They can also be easily cached by intermediaries like proxy servers, which can improve performance and reduce server load for frequently accessed resources. In addition to this, query string URLs can be bookmarked by end users, which is helpful for saving specific views, filters, and search results. However, for more complex data structures, larger volumes of data, and sensitive information, JSON body is the go-to option.
 
-## Authorization
+## Authentication
 
-Basic api_key authorization was added to the project, making it necessary to add the key 'Authorization' and one of the API Keys inside the auth.cfg file as a value for successfuly completing requests.
+Basic API_key authorization was added to the project, making it necessary to add the key 'Authorization' and one of the API Keys inside the auth.cfg file as a value for successfully completing requests. API Key authentication is less secure for user-specific authentication because they are typically long-lived and can be easily shared, but are suitable for simple, low-security scenarios and public APIs that don't require user-specific access. Therefore, they are a great option for providing access to the entire API when there is no need for fine-grained permissions.
 
 ## Next steps
 
@@ -98,6 +98,6 @@ The goal of this project was simply to try out ChatGPT API, but I decided to lis
 
 1. Improve validation and error handling 
 2. Data persistence
-3. User authentication and authorization
+3. Advanced user authentication and authorization
 4. Rate limit and throttling
 5. API documentation
