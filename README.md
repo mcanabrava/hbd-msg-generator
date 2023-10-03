@@ -13,7 +13,7 @@ First, you need to set up a Flask application. You can do this by installing Fla
 
 ```pip install Flask```
 
-Now, check the app.py file for the basic server configuration, make the necessary adjustments if any and kick-off the server with ```python app.py``` command. Your Flask app will start on localhost at the default port 5000.
+Now, check the app.py file for the basic server configuration, make the necessary adjustments if any, and kick off the server with the ```python app.py``` command. Your Flask app will start on localhost at the default port 5000.
 
 Accessing localhost in port 5000 directly will return an error, given that there is no defined route for this URL. However, it should be possible to access the defined route http://localhost:5000/birthday-messages which will by default make a GET request as this is what browsers are usually for.
 
@@ -21,7 +21,7 @@ Finally, to test it with Postman, send a POST request to http://localhost:5000/b
 
 - friend_name
 - relationship_type
-- words to be included on the message
+- words to be included in the message
 - maximum number of words
 - style
 - language for the message
@@ -62,11 +62,11 @@ Please see the examples below for illustrative purposes:
 ![bob](images/BobRequest.png)
 
 
-If any of these values is not specified, defaults will be used to fill out the missing details, as in this empty JSON string example that defaults to a poem for a work colleague named John.
+If any of these values are not specified, defaults will be used to fill out the missing details, as in this empty JSON string example that defaults to a poem for a work colleague named John.
 
 ![john](images/JohnRequest.png)
 
-Finally, it is possible to use the GET method to retrieve previous generated HBD messages. This might be useful in case the user generated multiple messages in a row and wants to go back to a previous generated version, for example.
+Finally, it is possible to use the GET method to retrieve previously generated HBD messages. This might be useful in case the user generates multiple messages in a row and wants to go back to a previously generated version, for example.
 
 ![GetPreview](images/GetPreview.png)
 
@@ -94,7 +94,7 @@ Basic api_key authorization was added to the project, making it necessary to add
 
 ## Next steps
 
-The goal of this project was simply to try out ChatGPT API, but I decided to list a suggestion of next steps for those who want to build on the code I have already created or to my future self:
+The goal of this project was simply to try out ChatGPT API, but I decided to list a suggestion of the next steps for those who want to build on the code I have already created or for my future self:
 
 1. Improve validation and error handling 
 2. Data persistence
