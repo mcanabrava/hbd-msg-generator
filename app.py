@@ -44,7 +44,7 @@ def custom_response(limiter, error):
 
 @app.route('/birthday-messages', methods=['POST'])
 @limiter.limit("2 per minute")
-@throttle(3)  # Throttle to x request per second
+@throttle(1)  # Throttle to x request per second
 def create_birthday_message():
     """
     Create a birthday message based on user input.
@@ -82,7 +82,7 @@ def create_birthday_message():
         return jsonify({"error": "Message generation failed"}), 500  # 500 Internal Server Error
 
 @app.route('/birthday-messages', methods=['GET'])
-@throttle(5)  # Throttle to 5 request per second
+@throttle(1)  # Throttle to x request per second
 def get_birthday_messages():
     """
     Get a list of all birthday messages.

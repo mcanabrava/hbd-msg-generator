@@ -110,6 +110,20 @@ To avoid receiving these consecutive calls or sending the rate limit error messa
 
 ![throttlingExample](images/throttlingExample.png)
 
+## Front-end with Streamlit
+
+Streamlit is a pure python library that can be used to develop front-end elements.
+
+```
+pip install streamlit
+```
+
+The streamlit_app.py file in this directory can be run with the following command:
+
+```
+streamlit run streamlit_app.py
+```
+
 ## Next steps
 
 The goal of this project was simply to try out ChatGPT API, but I decided to list a suggestion of the next steps for those who want to build on the code I have already created or for my future self:
@@ -118,3 +132,4 @@ The goal of this project was simply to try out ChatGPT API, but I decided to lis
 2. Data persistence
 3. Advanced user authentication and authorization with JWT
 4. API documentation
+
