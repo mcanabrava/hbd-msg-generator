@@ -26,4 +26,4 @@ jobs:
       - name: Deploy Streamlit app
         run: |
           cd streamlit_app
-          streamlit run streamlit_app.py
+          streamlit run streamlit_app.py --server.enableCORS false
