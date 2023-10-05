@@ -1,13 +1,16 @@
 # hbd_generator
 Happy birthday generator using ChatGPT OpenAI API.
 
-The goal of this project is to develop an API that can run on localhost, so I can simulate receiving input and returning answers to a hypothetical front-end, that can be developed later as a follow-up project. This API will run on top of the OpenAI API, basically organizing distinct input in order to provide a structured command for ChatGPT. 
+The goal of this project is to develop an API that is capable of receiving input from a front-end, sending this input to ChatGPT API and returning an answer to the front-end. 
+
+Check out my Loom Demo to see how it works in further detail. [Demo](https://www.loom.com/share/c84191f941c648db96306447fcd258a1)
+
+
+## Running the app step by step
 
 To start, you'll need a way to run a local server that listens for incoming HTTP requests. You can use a web framework like Flask or FastAPI for this purpose. We'll use Flask in this example.
 
 After configuring Flask, you'll need to create an endpoint that accepts POST requests and sends them to the OpenAPI model to get a response. An alternative implementation that uses a query string instead of a JSON body can be found in the app_qs.py file.
-
-## Running the app step by step
 
 First, you need to set up a Flask application. You can do this by installing Flask if you haven't already:
 
@@ -123,6 +126,14 @@ The streamlit_app.py file in this directory can be run with the following comman
 ```
 streamlit run streamlit_app.py
 ```
+
+Check the example below for Grandmother Alice:
+
+![Form](images/streamlit_form.png)
+
+And the response message:
+
+![Response](images/formResponse.png)
 
 ## Next steps
 

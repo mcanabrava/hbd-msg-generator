@@ -83,7 +83,7 @@ css = """
 <style>
 .footer-text {
     position: absolute;
-    bottom: -1167px; /* Adjust this value as needed to control the vertical position */
+    bottom: -1180px; /* Adjust this value as needed to control the vertical position */
     left: 240px; /* Adjust this value as needed to control the horizontal position */
     font-size: 14px; /* Adjust this value to make the text smaller */
 }
