@@ -26,4 +26,4 @@ jobs:
       - name: Deploy Flask API
         run: |
           cd api_app
-          gunicorn app.py:app  # Adjust the filename and app instance
+          python app.py:app  # Adjust the filename and app instance
