@@ -1,5 +1,5 @@
 # hbd_generator
-Happy birthday generator using ChatGPT OpenAI API.
+Happy birthday generator using ChatGPT OpenAI API and Streamlit.
 
 The goal of this project is to develop an API that is capable of receiving input from a front-end, sending this input to ChatGPT API and returning an answer to the front-end. 
 
