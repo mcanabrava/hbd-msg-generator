@@ -3,9 +3,9 @@ Happy birthday generator using ChatGPT OpenAI API.
 
 The goal of this project is to develop an API that is capable of receiving input from a front-end, sending this input to ChatGPT API and returning an answer to the front-end. 
 
-The end result can be seen in the images below, but for a better understanding it is highly recommended to watch my [Loom Demo](https://www.loom.com/share/c84191f941c648db96306447fcd258a1)
+The end result can be seen in the images below, but for a better understanding it is highly recommended to watch my [Loom Demo.](https://www.loom.com/share/c84191f941c648db96306447fcd258a1)
 
-Check the example below for Grandmother Alice:
+Check the example below for Grandmother Alice, who likes rock and roll, parties and violets very much:
 
 ![Form](images/streamlit_form.png)
 
