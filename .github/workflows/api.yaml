@@ -1,0 +1,29 @@
+name: Deploy Flask API
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10.4'  # Adjust the Python version
+
+      - name: Install Flask API dependencies
+        run: |
+          cd flask_api
+          pip install -r requirements.txt
+
+      - name: Deploy Flask API
+        run: |
+          cd flask_api
+          gunicorn your_api_file:app  # Adjust the filename and app instance
