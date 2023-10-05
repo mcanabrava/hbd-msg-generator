@@ -3,7 +3,15 @@ Happy birthday generator using ChatGPT OpenAI API.
 
 The goal of this project is to develop an API that is capable of receiving input from a front-end, sending this input to ChatGPT API and returning an answer to the front-end. 
 
-Check out my Loom Demo to see how it works in further detail. [Demo](https://www.loom.com/share/c84191f941c648db96306447fcd258a1)
+The end result can be seen in the images below, but for a better understanding it is highly recommended to watch my [Loom Demo](https://www.loom.com/share/c84191f941c648db96306447fcd258a1)
+
+Check the example below for Grandmother Alice:
+
+![Form](images/streamlit_form.png)
+
+And the response message:
+
+![Response](images/formResponse.png)
 
 
 ## Running the app step by step
@@ -127,13 +135,6 @@ The streamlit_app.py file in this directory can be run with the following comman
 streamlit run streamlit_app.py
 ```
 
-Check the example below for Grandmother Alice:
-
-![Form](images/streamlit_form.png)
-
-And the response message:
-
-![Response](images/formResponse.png)
 
 ## Next steps
 
