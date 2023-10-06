@@ -67,7 +67,7 @@ def main():
         }
 
         # Make a POST request to your Flask API with the headers
-        api_endpoint = "https://hbd-generator-api-9f00c701fce0.herokuapp.com/birthday-messages" 
+        api_endpoint = "http://localhost:5000/birthday-messages" 
         response = requests.post(api_endpoint, json=data, headers=headers)
 
         if response.status_code == 201:
@@ -83,7 +83,7 @@ css = """
 <style>
 .footer-text {
     position: absolute;
-    bottom: -1180px; /* Adjust this value as needed to control the vertical position */
+    bottom: 100x; /* Adjust this value as needed to control the vertical position */
     left: 240px; /* Adjust this value as needed to control the horizontal position */
     font-size: 14px; /* Adjust this value to make the text smaller */
 }
