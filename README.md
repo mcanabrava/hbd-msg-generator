@@ -30,4 +30,7 @@ The streamlit_app.py file in this directory can be run with the following comman
 streamlit run streamlit_app.py
 ```
 
+## Deploy in Heroku
+
+Procfile, Runtime, Setup and Requirement files are necessary to deploy in Heroku. Please refer to Heroku docs for additional details.
 

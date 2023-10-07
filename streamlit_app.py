@@ -83,9 +83,10 @@ css = """
 <style>
 .footer-text {
     position: absolute;
-    bottom: 100x; /* Adjust this value as needed to control the vertical position */
-    left: 240px; /* Adjust this value as needed to control the horizontal position */
-    font-size: 14px; /* Adjust this value to make the text smaller */
+    bottom: 0%; /* Use a percentage or another relative unit here */
+    left: 0%; /* Use a percentage or another relative unit here */
+    font-size: 1rem; /* Use relative units like rem, em, or vw here */
+    text-align: center;
 }
 </style>
 """
@@ -94,7 +95,7 @@ css = """
 st.markdown(css, unsafe_allow_html=True)
 
 # Add a footer with a hyperlink
-st.markdown('<div class="footer-text">Created by Marcelo Canabrava, 2023. <a href="https://github.com/mcanabrava">Check out my GitHub for the source code.</a></div>', unsafe_allow_html=True)
+st.markdown('<div class="footer-text">Created by Marcelo Canabrava, 2023.<a href="https://github.com/mcanabrava"> Check out my GitHub for the source code.</a></div>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
